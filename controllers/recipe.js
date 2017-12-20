@@ -21,24 +21,18 @@ router.get('/:title', (req, res) => {
 })
 
 router.delete('/:title', (req, res) => {
-  Recipe.findOneAndRemove({ recipe: req.params.recipe })
-    .then(() => {
+  Recipe.findOneAndRemove({ recipe: req.body.recipe })
+    .then((recipe) => {
       res.redirect('/recipe')
     })
 })
 
 router.put('/:title', (req, res) => {
-  Recipe.Update(
-    {},
-    {
-      $set: {title: req.params.title},
-      $set: {descirpition: req.params.descirpition},
-      $set: {ingredient: req.params.ingredient},
-      $set: {rating: req.params.rating}
-    },
-    { multi: true })
+  Recipe.findOneAndUpdate({ title: req.params.title},
+    req.body.recipe,
+    { new: true })
     .then((recipeData) => {
-      res.redirect(`/recipe/${Recipe.title}`)
+      res.redirect(`/recipe/${recipeData.title}`)
     })
     .catch((err) => {
       console.log(err)

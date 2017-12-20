@@ -19,10 +19,10 @@ app.engine('.hbs', hbs({
 app.get('/', (req, res) => {
   res.render('app-welcome')
 })
+app.use(methodOverride('_method'))
 
 app.use(parser.urlencoded({ extended: true }))
 app.use('/recipe', recipe)
-app.use(methodOverride('_method'))
 
 app.listen(app.get('port'), () => {
   console.log('It\'s aliiive!')

@@ -1,11 +1,15 @@
 {{#if recipe}}
 <h2>{{recipe.title}}</h2>
 
-  <a href="/recipe/{{recipe.title}}"></a>
-    <ul>{{recipe.descirpition}}</ul>
-    <ul>{{recipe.instruction}}</ul>
-    <ul>{{recipe.ingredient}}</ul>
-    <ul>{{recipe.rating}}</ul>
+ <h1><a href="/recipe/{{recipe.title}}"></a></h1>
+ <h3>Descirpition</h3>
+    <h4><ul>{{recipe.descirpition}}</ul></h4>
+<h3>Instructoins</h3>
+    <h4><ul>{{recipe.instruction}}</ul></h4>
+<h3>Ingredients</h3>
+    <h4><ul>{{recipe.ingredient}}</ul></h4>
+<h3>Rating!</h3>
+    <h4><ul>{{recipe.rating}}</ul></h4>
     </ol>
 {{else}}
 <h2>that recipe couldn't be found</h2>
@@ -15,12 +19,17 @@
 
 <h2>Update Information</h2>
 <form action="/recipe/{{recipe.title}}?_method=put" method="post">
-  <input type="text" name="candidate[name]" value="{{candidate.name}}">
-  <input type="text" name="candidate[year]" value="{{candidate.year}}">
-  <input type="submit" value="Update">
+ <ul>
+  <li><input type="text" name="recipe[title]" placeholder="title"></li>
+  <li><input type="text" name="recipe[descirpition]" placeholder="desciption"></li>
+  <li><input type="text" name="recipe[ingredient]" placeholder="ingredient"></li>
+  <li><input type="text" name="recipe[instruction]" placeholder="instruction"></li>
+  <li><input type="text" name="recipe[rating]" placeholder="rating"></li>
+</ul>
+ <input type="submit" value="Register">
 </form>
 
-<h2>Remove Candidate</h2>
-<form action="/candidates/{{candidate.name}}?_method=delete" method="post">
+<h2>Remove Recipe</h2>
+<form action="/recipe/{{recipe.title}}?_method=delete" method="post">
   <input type="submit" value="Remove">
 </form>

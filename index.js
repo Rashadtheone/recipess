@@ -16,12 +16,11 @@ app.engine('.hbs', hbs({
   defaultLayout: 'layout-main'
 }))
 
-app.use(parser.urlencoded({ extended: true }))
-
 app.get('/', (req, res) => {
   res.render('app-welcome')
 })
 
+app.use(parser.urlencoded({ extended: true }))
 app.use('/recipe', recipe)
 app.use(methodOverride('_method'))
 

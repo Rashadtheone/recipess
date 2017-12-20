@@ -12,4 +12,12 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/:title', (req, res) => {
+  let title = req.params.title
+  Recipe.findOne({ title: title })
+  .then(recipeData => {
+    res.render('recipe-show', { recipe: recipeData })
+  })
+})
+
 module.exports = router

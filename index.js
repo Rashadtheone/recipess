@@ -2,8 +2,8 @@ const express = require('express')
 const app = express()
 const hbs = require('express-handlebars')
 const recipe = require('./controllers/recipe')
-
-const router = express.Router()
+const parser = require('body-parser')
+const methodOverride = require('method-override')
 
 app.set('port', process.env.PORT || 3001)
 
@@ -16,19 +16,14 @@ app.engine('.hbs', hbs({
   defaultLayout: 'layout-main'
 }))
 
+app.use(parser.urlencoded({ extended: true }))
+
 app.get('/', (req, res) => {
   res.render('app-welcome')
 })
 
-router.get('/:title', (req, res) => {
-  let title = req.params.title
-  recipe.findOne({ title: title })
-    .then(recipe => {
-      res.render('recipe-show', { recipe: recipe })
-    })
-})
-
 app.use('/recipe', recipe)
+app.use(methodOverride('_method'))
 
 app.listen(app.get('port'), () => {
   console.log('It\'s aliiive!')

@@ -1,11 +1,20 @@
-{{#if candidate}}
-<h2>{{candidate.name}} for President in {{candidate.year}}!</h2>
+{{#if recipe}}
+<h2>{{recipe.title}}</h2>
+
+  <a href="/recipe/{{recipe.title}}"></a>
+    <ul>{{recipe.descirpition}}</ul>
+    <ul>{{recipe.instruction}}</ul>
+    <ul>{{recipe.ingredient}}</ul>
+    <ul>{{recipe.rating}}</ul>
+    </ol>
 {{else}}
-<h2>That candidate couldn't be found!</h2>
+<h2>that recipe couldn't be found</h2>
 {{/if}}
 
+
+
 <h2>Update Information</h2>
-<form action="/candidates/{{candidate.name}}?_method=put" method="post">
+<form action="/recipe/{{recipe.title}}?_method=put" method="post">
   <input type="text" name="candidate[name]" value="{{candidate.name}}">
   <input type="text" name="candidate[year]" value="{{candidate.year}}">
   <input type="submit" value="Update">

@@ -1,0 +1,24 @@
+[
+    {
+        "title": "Hamburger" ,
+        "descirpition":"America's Favorite",
+        "instruction":"Put meat on bun",
+        "ingredient": "Meat, bun, ketchup",
+        "rating" : 10
+    },
+    {
+        "title": "Good Burger" ,
+        "descirpition":"America's Favorite",
+        "instruction":"Put meat on bun",
+        "ingredient": "Mondo Meat, bun, ketchup",
+        "rating" : 10
+    },
+    {
+        "title": "Engera" ,
+        "descirpition":"Ethiopians Favorite",
+        "instruction":"Use Mitad to make the Enjera",
+        "ingredient": "Enjera, Duket,",
+        "rating" : 10
+    }
+    
+    ]

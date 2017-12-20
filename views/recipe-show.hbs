@@ -1,0 +1,17 @@
+{{#if candidate}}
+<h2>{{candidate.name}} for President in {{candidate.year}}!</h2>
+{{else}}
+<h2>That candidate couldn't be found!</h2>
+{{/if}}
+
+<h2>Update Information</h2>
+<form action="/candidates/{{candidate.name}}?_method=put" method="post">
+  <input type="text" name="candidate[name]" value="{{candidate.name}}">
+  <input type="text" name="candidate[year]" value="{{candidate.year}}">
+  <input type="submit" value="Update">
+</form>
+
+<h2>Remove Candidate</h2>
+<form action="/candidates/{{candidate.name}}?_method=delete" method="post">
+  <input type="submit" value="Remove">
+</form>

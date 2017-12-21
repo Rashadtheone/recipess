@@ -7,6 +7,8 @@ const methodOverride = require('method-override')
 
 app.set('port', process.env.PORT || 3001)
 
+app.use(methodOverride('_method'))
+
 app.set('view engine', 'hbs')
 
 app.engine('.hbs', hbs({
@@ -19,7 +21,8 @@ app.engine('.hbs', hbs({
 app.get('/', (req, res) => {
   res.render('app-welcome')
 })
-app.use(methodOverride('_method'))
+
+app.use('/assets', express.static('public'))
 
 app.use(parser.urlencoded({ extended: true }))
 app.use('/recipe', recipe)

@@ -1,11 +1,8 @@
+
 <h2>{{recipe.length}} Recipes</h2>
 {{#each recipe as |recipe index|}}
 <h3>
-  <a href="/recipe/{{recipe.title}}">
-  <ol>
-    <ul>{{recipe.title}}</ul>
-    </ol>
-    </a>
+  <li><a href="/recipe/{{recipe.title}}">{{recipe.title}}</a></li>
 </h3>
 {{/each}}
 

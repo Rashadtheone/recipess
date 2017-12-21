@@ -32,7 +32,6 @@ router.put('/:title', (req, res) => {
     req.body.recipe,
     { new: true })
     .then((recipeData) => {
-      res.redirect(`/recipe/${recipeData.title}`)
     })
     .catch((err) => {
       console.log(err)

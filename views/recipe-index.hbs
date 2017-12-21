@@ -9,11 +9,11 @@
 <h2>Register New recipe</h2>
 <form action="/recipe" method="post">
 <ul>
-  <li><input type="text" name="recipe[title]" placeholder="title"></li>
-  <li><input type="text" name="recipe[descirpition]" placeholder="desciption"></li>
-  <li><input type="text" name="recipe[ingredient]" placeholder="ingredient"></li>
-  <li><input type="text" name="recipe[instruction]" placeholder="instruction"></li>
-  <li><input type="text" name="recipe[rating]" placeholder="rating"></li>
+  <li>Title: <input type="text" name="recipe[title]" placeholder="title" id="title"></li>
+  <li>Descirpition: <input type="text" name="recipe[descirpition]" placeholder="desciption" maxlength="250"></li>
+  <li>Ingredient: <input type="text" name="recipe[ingredient]" placeholder="ingredient"></li>
+  <li>Instruction: <input type="text" name="recipe[instruction]" placeholder="instruction"></li>
+  <li>Rating: <input type="text" name="recipe[rating]" placeholder="rating"></li>
 </ul>
-<li><input type="submit" value="update"></li>
+<input type="submit" value="Register">
 </form>

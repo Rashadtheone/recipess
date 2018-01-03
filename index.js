@@ -1,3 +1,4 @@
+//establish all the dependencies
 const express = require('express')
 const app = express()
 const hbs = require('express-handlebars')

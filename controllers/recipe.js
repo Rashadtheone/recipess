@@ -41,7 +41,7 @@ router.delete('/:title', (req, res) => {
 // this updates your recipe. 
 router.put('/:title', (req, res) => {
   // this updates a particular code, AFTER it locates them and updates it. 
-  Recipe.findOneAndUpdate({ title: req.params.title},
+  Recipe.findOneAndUpdate({title: req.params.title},
     //this says it's going to require the entire recipe
     req.body.recipe,
     { new: true })

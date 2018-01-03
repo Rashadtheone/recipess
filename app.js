@@ -31,6 +31,10 @@ app.use(require("express-session")({
 
 }))
 
+// use passport and the stratagy local to authencicate
+// the authontication method come from passportLocalMongoose
+passport.use(new localStrategy(User.authenticate()))
+
 //use passport for the app
 app.use(passport.initialize());
 app.use(passport.session());
@@ -102,6 +106,18 @@ app.get("/login", function(req, res){
   res.render("login");
 
 })
+
+// login logic
+// passport.authenticate is a middleware run before final callback
+// check credientials of request inside body aganist the db
+  app.post("/login", passport.authenticate("local", {
+  successRedirect: "/secret",
+  failureRedirect: "/login"
+
+}) ,function(req, res){
+
+
+});
 
 
 

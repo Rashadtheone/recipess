@@ -66,8 +66,8 @@ app.get('/', (req, res) => {
   res.render('app-welcome')
 })
 
-//set up secret route
-app.get('/secret', (req, res) => {
+//set up secret route wit a middleware isLoggedIn 
+app.get('/secret', isLoggedIn,(req, res) => {
   res.render('secret')
 })
 //set up Auth route
@@ -118,6 +118,22 @@ app.get("/login", function(req, res){
 
 
 });
+
+// Log out by destroying any data in the user session 
+app.get("/logout", function(req, res){
+ req.logout();
+ res.redirect("/");
+
+})
+// check the user status either logged in or not
+function isLoggedIn (req, res, next){
+if(req.isAuthenticated()){
+  return next();
+}
+res.redirect("/login")
+
+}
+
 
 
 

@@ -31,9 +31,15 @@ app.use(require('express-session')({
 
 }))
 
-// use passport for the app
-app.use(passport.initialize())
-app.use(passport.session())
+// use passport and the stratagy local to authencicate
+// the authontication method come from passportLocalMongoose
+passport.use(new localStrategy(User.authenticate()))
+
+// flash 
+
+//use passport for the app
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/assets', express.static('public'))
 app.use(parser.urlencoded({ extended: true }))
@@ -62,8 +68,8 @@ app.get('/', (req, res) => {
   res.render('app-welcome')
 })
 
-// set up secret route
-app.get('/secret', (req, res) => {
+//set up secret route wit a middleware isLoggedIn 
+app.get('/secret', isLoggedIn,(req, res) => {
   res.render('secret')
 })
 // set up Auth route
@@ -72,6 +78,64 @@ app.get('/secret', (req, res) => {
 app.get('/register', (req, res) => {
   res.render('register')
 })
+
+// Handling user sign UP
+app.post('/register', (req, res)=>{
+  req.body.username
+  req.body.password
+  // create new user object, and pass in only user name and we dont save the password to db
+  User.register(new User({username: req.body.username}), req.body.password, (err, user) => {
+    if(err){
+      console.log(err);
+      return res.render("register")
+    }
+    //if not error the passport middle ware take care of the session, 
+    //register the correct info, serialize user method and deserialize
+    // the passport strategy here is local
+    passport.authenticate("local")(req, res, function(){
+      // once logged in redirect to secret
+      res.redirect("/secret");
+    })
+
+  });
+
+});
+
+// Login routes
+// Render login form
+app.get("/login", function(req, res){
+  res.render("login");
+
+})
+
+// login logic
+// passport.authenticate is a middleware run before final callback
+// check credientials of request inside body aganist the db
+  app.post("/login", passport.authenticate("local", {
+  successRedirect: "/secret",
+  failureRedirect: "/login"
+
+}) ,function(req, res){
+
+
+});
+
+// Log out by destroying any data in the user session 
+app.get("/logout", function(req, res){
+ req.logout();
+ res.redirect("/");
+
+})
+// check the user status either logged in or not
+function isLoggedIn (req, res, next){
+if(req.isAuthenticated()){
+  return next();
+}
+res.redirect("/login")
+
+}
+
+
 
 
 app.listen(app.get('port'), () => {

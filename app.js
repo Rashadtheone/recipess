@@ -35,6 +35,8 @@ app.use(require("express-session")({
 // the authontication method come from passportLocalMongoose
 passport.use(new localStrategy(User.authenticate()))
 
+// flash 
+
 //use passport for the app
 app.use(passport.initialize());
 app.use(passport.session());

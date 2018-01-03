@@ -1,3 +1,4 @@
+//establish all dependencies
 const express = require('express')
 const app = express()
 const hbs = require('express-handlebars')
@@ -17,9 +18,14 @@ app.engine('.hbs', hbs({
   layoutsDir: 'views/',
   defaultLayout: 'layout-main'
 }))
-
+//set up root route
 app.get('/', (req, res) => {
   res.render('app-welcome')
+})
+
+//set up secret route
+app.get('/secret', (req, res) => {
+  res.render('secret')
 })
 
 app.use('/assets', express.static('public'))
@@ -29,5 +35,5 @@ app.use('/recipe', recipe)
 
 app.listen(app.get('port'), () => {
   console.log('It\'s aliiive!')
-  console.log('Im rnning port 3001')
+  console.log('IServer running at  3001 .......')
 })
